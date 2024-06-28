@@ -1,0 +1,37 @@
+/* common */
+
+body, div, ul, li, nav {
+    margin: 0;
+    padding: 0;
+}
+
+ul, li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #666;
+}
+
+a:hover {
+    color: #008537;
+}
+
+a:visited {
+    color: #666;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+body {
+    font-size: 16px;
+    color: #222324;
+}

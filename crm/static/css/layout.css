@@ -1,0 +1,54 @@
+/* common layout */
+
+.list_header li  {
+    border-bottom: 1px solid #ddd;
+}
+
+.list_header > li > span {
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+
+/* top_bar layout */
+.top_nav {
+    width: 100%;
+    margin: 0 auto;
+    padding: 16px 0;
+    background-color: #008537;
+    display: flex;
+    justify-content: center;
+}
+
+.top_nav a {
+    color: #fff;
+}
+
+.top_nav a:hover {
+    color: #d0ff00;
+    transition: ease .3s
+}
+
+.top_nav .nav_wrap {
+    width: 1200px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 32px;
+}
+
+.top_nav .nav_wrap li {
+    font-size: 1.5rem;
+}
+
+/* user layout */
+.pagination {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.pagination .active{
+    font-weight: 700;
+    color: #008537;
+}

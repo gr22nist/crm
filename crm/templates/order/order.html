@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}ORDER PAGE{% endblock %}
+
+{% block content %}
+<!-- <section class="search">
+    <form action="/search" method="GET">
+        <label for="">이름</label>
+        <input type="text" name="name" id="name">
+        
+        <label for="">성별</label>
+        <select name="gender" id="gender">
+            <option value=""></option>
+            <option value="Female">여자</option>
+            <option value="Male">남자</option>
+        </select>
+
+        <label for="age">나이</label>
+        <input type="number" name="age" id="age">
+        
+        <button type="submit">검색</button>
+    </form>
+</section> -->
+<section class="content">
+    <ul class="list_header">
+        <li>
+            <span>주문 아이디</span>
+            <span>주문 일자</span>
+            <span>상점명</span>
+            <span>주문자명</span>
+            <ul class="list_item">
+                {% for user in result %}
+                <li>
+                    <span>{{ order['Id'] }}</span>
+                    <span>{{ order['OrderAt'] }}</span>
+                    <span>{{ store['Name'] }} </span>
+                    <span>{{ user['Name'] }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+</section>
+<section>
+    <ul class="pagination">
+        <li><a href="{{ url_for('order.get_order', page=1) }}"><i class="fa-solid fa-angles-left"></i></a></li>
+        <li><a href="{{ url_for('order.get_order', page=page - 1) }}"><i class="fa-solid fa-angle-left"></i></a></li>
+
+        {% set start_page = (page - 1) // 5 * 5 + 1 %}
+        {% set end_page = start_page + 4 %}
+        {% if end_page > total_pages %}
+            {% set end_page = total_pages %}
+        {% endif %}
+
+        {% for p in range(start_page, end_page + 1) %}
+        <li class="{% if p == page %}active{% endif %}"><a href="{{ url_for('order.get_user', page=p) }}">{{ p }}</a></li>
+        {% endfor %}
+        
+        <li><a href="{{ url_for('order.get_order', page=page+1) }}"><i class="fa-solid fa-angle-right"></i></a></li>
+        <li><a href="{{ url_for('order.get_order', page=total_pages) }}"><i class="fa-solid fa-angles-right"></i></a></li>
+    </ul>
+</section>
+{% endblock %}
