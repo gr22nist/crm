@@ -1,15 +1,15 @@
 from flask import Blueprint, render_template, request
 from flask_sqlalchemy import SQLAlchemy
-from pagination import paginate
+from paginate import paginate
 
-order_bp = Blueprint('order', __name__, url_prefix='/order')
+bp = Blueprint('order', __name__, url_prefix='/orders')
 
-@order_bp.route('/')
+@bp.route('/')
 def get_order():
     page = request.args.get('page', 1, type=int)
     per_page = request.args.get('per_page', default=10, type=int)
     query = """
-        SELECT * from orders
+        SELECT * from orders WHERE 1=1
     """
     params = []
     

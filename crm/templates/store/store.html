@@ -1,0 +1,42 @@
+{% extends "./base.html" %}
+{% block title %}STORE PAGE{% endblock %}
+
+{% block content %}
+<section class="content">
+    <ul class="list_header">
+        <li>
+            <span>매장명</span>
+            <span>프랜차이즈명</span>
+            <span>주소</span>
+            <ul class="list_item">
+                {% for store in result %}
+                <li>
+                    <span>{{ store['Name'] }}</span>
+                    <span>{{ store['Type'] }} </span>
+                    <span>{{ store['Address'] }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+</section>
+<section>
+    <ul class="pagination">
+        <li><a href="{{ url_for('store.get_store', page=1) }}"><i class="fa-solid fa-angles-left"></i></a></li>
+        <li><a href="{{ url_for('store.get_store', page=page - 1) }}"><i class="fa-solid fa-angle-left"></i></a></li>
+
+        {% set start_page = (page - 1) // 5 * 5 + 1 %}
+        {% set end_page = start_page + 4 %}
+        {% if end_page > total_pages %}
+            {% set end_page = total_pages %}
+        {% endif %}
+
+        {% for p in range(start_page, end_page + 1) %}
+        <li class="{% if p == page %}active{% endif %}"><a href="{{ url_for('store.get_store', page=p) }}">{{ p }}</a></li>
+        {% endfor %}
+        
+        <li><a href="{{ url_for('store.get_store', page=page+1) }}"><i class="fa-solid fa-angle-right"></i></a></li>
+        <li><a href="{{ url_for('store.get_store', page=total_pages) }}"><i class="fa-solid fa-angles-right"></i></a></li>
+    </ul>
+</section>
+{% endblock %}

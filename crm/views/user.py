@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request
-from pagination import paginate
+from paginate import paginate
 
 bp = Blueprint('user', __name__, url_prefix='/users')
 

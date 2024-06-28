@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash
-from pagination import paginate
+from paginate import paginate
 
 search_bp = Blueprint('search', __name__)
 

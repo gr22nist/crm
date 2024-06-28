@@ -2,38 +2,18 @@
 {% block title %}ORDER PAGE{% endblock %}
 
 {% block content %}
-<!-- <section class="search">
-    <form action="/search" method="GET">
-        <label for="">이름</label>
-        <input type="text" name="name" id="name">
-        
-        <label for="">성별</label>
-        <select name="gender" id="gender">
-            <option value=""></option>
-            <option value="Female">여자</option>
-            <option value="Male">남자</option>
-        </select>
-
-        <label for="age">나이</label>
-        <input type="number" name="age" id="age">
-        
-        <button type="submit">검색</button>
-    </form>
-</section> -->
 <section class="content">
     <ul class="list_header">
         <li>
-            <span>주문 아이디</span>
-            <span>주문 일자</span>
-            <span>상점명</span>
-            <span>주문자명</span>
+            <span>아이디</span>
+            <span>주문 내역 아이디</span>
+            <span>아이템 아이디</span>
             <ul class="list_item">
-                {% for order in result %}
+                {% for orderitem in result %}
                 <li>
+                    <span>{{ orderitem['Id'] }}</span>
                     <span>{{ order['Id'] }}</span>
-                    <span>{{ order['OrderAt'] }}</span>
-                    <span>{{ store['Name'] }} </span>
-                    <span>{{ user['Name'] }}</span>
+                    <span>{{ item['Id'] }} </span>
                 </li>
                 {% endfor %}
             </ul>

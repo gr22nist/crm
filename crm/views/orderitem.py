@@ -1,10 +1,10 @@
 from flask import Blueprint, render_template, request
 from flask_sqlalchemy import SQLAlchemy
-from pagination import paginate
+from paginate import paginate
 
-orderitem_bp = Blueprint('orderitem', __name__, url_prefix='/orderitem')
+bp = Blueprint('orderitem', __name__, url_prefix='/orderitems')
 
-@orderitem_bp.route('/')
+@bp.route('/')
 def get_orderitem():
     page = request.args.get('page', 1, type=int)
     per_page = request.args.get('per_page', default=10, type=int)
