@@ -6,11 +6,11 @@ bp = Blueprint('user', __name__, url_prefix='/users')
 
 @bp.route('/')
 def get_user():
-    page = request.args.get('page', 1, type=int)
     name = request.args.get("name")
     gender = request.args.get("gender")
     age = request.args.get("age")
 
+    page = request.args.get('page', 1, type=int)
     per_page = request.args.get('per_page', default=20, type=int)
     
     base_query = "SELECT * FROM users WHERE 1=1"
@@ -35,6 +35,7 @@ def get_user():
         total_pages = 1
 
     return render_template('user/user.html', result=result, page=page, per_page=per_page, total_pages=total_pages, no_results=no_results)
+
 
 @bp.route('/<user_id>')
 def user_detail(user_id):
