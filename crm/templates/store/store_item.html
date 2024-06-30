@@ -1,0 +1,9 @@
+{% macro store_item(item) %}
+<a href="{{ url_for('store.store_detail', store_id=item['Id']) }}">
+    <li>
+        <span>{{ item['Name'] }}</span>
+        <span>{{ item['Type'] }}</span>
+        <span>{{ item['Address'] }}</span>
+    </li>
+</a>
+{% endmacro %}

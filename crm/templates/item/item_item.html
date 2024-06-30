@@ -1,0 +1,11 @@
+{% macro item_item(item) %}
+<a href="{{ url_for('item.item_detail', item_id=item['Id']) }}">
+    <li>
+        <span>{{ item['Name'] }}</span>
+        {% set class_map = {'Coffee': 'coffee', 'Juice': 'juice'} %}
+        {% set item_class = class_map.get(item['Type'], 'cake') %}
+        <span class="{{ item_class }}">{{ item['Type'] }}</span>
+        <span>{{ item['UnitPrice'] }}</span>
+    </li>
+</a>
+{% endmacro %}

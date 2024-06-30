@@ -1,0 +1,10 @@
+{% macro order_item(item) %}
+<a href="{{ url_for('order.order_detail', order_id=item['Id']) }}">
+    <li>
+        <span>{{ item['Id'] }}</span>
+        <span>{{ item['OrderAt'] }}</span>
+        <span>{{ item['StoreId'] }}</span>
+        <span>{{ item['UserId'] }}</span>
+    </li>
+</a>
+{% endmacro %}
