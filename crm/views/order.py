@@ -14,7 +14,7 @@ def get_order():
     
     result, total_pages = paginate(base_query, params, page, per_page)
 
-    return render_template('/order/order.html', result=result, page=page, per_page=per_page, total_pages=total_pages)
+    return render_template('order/order.html', result=result, page=page, per_page=per_page, total_pages=total_pages)
 
 
 @bp.route('/<order_id>')
@@ -25,4 +25,4 @@ def order_detail(order_id):
     order = cur.fetchone()
     conn.close()
 
-    return render_template('/order/order_detail.html', order=dict(order))
+    return render_template('order/order_detail.html', order=dict(order))

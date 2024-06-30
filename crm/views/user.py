@@ -17,7 +17,7 @@ def get_user():
     params = []
 
     if name:
-        base_query += " AND name LIKE ?"
+        base_query += " and name LIKE ?"
         params.append('%' + name + '%')
     if gender:
         base_query += " AND gender = ?"
@@ -25,6 +25,9 @@ def get_user():
     if age:
         base_query += " AND age = ?"
         params.append(int(age))
+        
+    print("Query:", base_query)
+    print("Params:", params)
 
     try:
         result, total_pages = paginate(base_query, params, page, per_page)

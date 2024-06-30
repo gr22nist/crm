@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template, request
-from flask_sqlalchemy import SQLAlchemy
 from paginate import paginate
 
 bp = Blueprint('item', __name__, url_prefix='/items')
@@ -15,4 +14,4 @@ def get_item():
     
     result, total_pages = paginate(query, params, page, per_page)
 
-    return render_template('./item/item.html', result=result, page=page, per_page=per_page, total_pages=total_pages)
+    return render_template('item/item.html', result=result, page=page, per_page=per_page, total_pages=total_pages)
