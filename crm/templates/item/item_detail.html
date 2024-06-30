@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% from "details.html" import render_details %}
+{% block title %}ITEM DETAIL{% endblock %}
+
+{% block content %}
+<section class="item_detail">
+    <h1>메뉴 상세 정보</h1>
+    {% set headers = ["아이디", "제품명", "종류", "단가"] %}
+    {% set key_map = {"아이디": "Id", "제품명": "Name", "종류": "Type", "단가": "UnitPrice"} %}
+    {% set items = items %}
+    {{ render_details(headers, items, key_map, url_for('item.get_item')) }}
+</section>
+{% endblock %}

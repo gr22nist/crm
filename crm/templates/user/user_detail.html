@@ -4,9 +4,10 @@
 
 {% block content %}
 <section class="user_detail">
-    <h1>유저 정보</h1>
-    {% set headers = ["name", "gender", "age", "address"] %}
+    <h1>사용자 정보</h1>
+    {% set headers = ["아이디", "이름", "성별", "나이", "생년월일", "주소"] %}
+    {% set key_map = {"아이디": "Id", "이름": "Name", "성별": "Gender", "나이": "Age", "생년월일": "Birthdate", "주소": "Address"} %}
     {% set items = users %}
-    {{ render_details(headers, items, url_for('previous_page')) }}
+    {{ render_details(headers, items, key_map, url_for('user.get_user')) }}
 </section>
 {% endblock %}

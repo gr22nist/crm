@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% from "details.html" import render_details %}
+{% block title %}STORE DETAIL{% endblock %}
+
+{% block content %}
+<section class="store_detail">
+    <h1>매장 상세 정보</h1>
+    {% set headers = ["아이디", "매장명", "프랜차이즈명", "주소"] %}
+    {% set key_map = {"아이디": "Id", "매장명": "Name", "프랜차이즈명": "Type", "주소": "Address"} %}
+    {% set items = stores %}
+    {{ render_details(headers, items, key_map, url_for('store.get_store')) }}
+</section>
+{% endblock %}
