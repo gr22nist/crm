@@ -1,15 +1,12 @@
-{% extends "./base.html" %}
+{% extends "base.html" %}
+{% from "details.html" import render_details %}
 {% block title %}USER DETAIL{% endblock %}
 
 {% block content %}
 <section class="user_detail">
-    <h1>사용자 상세 정보</h1>
-    <p><strong>아이디:</strong> {{ user['Id'] }}</p>
-    <p><strong>이름:</strong> {{ user['Name'] }}</p>
-    <p><strong>성별:</strong> {{ user['Gender'] }}</p>
-    <p><strong>나이:</strong> {{ user['Age'] }}</p>
-    <p><strong>생년월일:</strong> {{ user['Birthdate'] }}</p>
-    <p><strong>주소:</strong> {{ user['Address'] }}</p>
-    <a href="{{ url_for('user.get_user') }}">돌아가기</a>
+    <h1>유저 정보</h1>
+    {% set headers = ["name", "gender", "age", "address"] %}
+    {% set items = users %}
+    {{ render_details(headers, items, url_for('previous_page')) }}
 </section>
 {% endblock %}

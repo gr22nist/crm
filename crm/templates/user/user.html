@@ -1,5 +1,9 @@
-{% extends "./base.html" %}
+{% extends "base.html" %}
+{% from "list.html" import render_list %}
+{% from "user/user_item.html" import user_item %}
+{% from "paginate.html" import render_pagination %}
 {% block title %}USER PAGE{% endblock %}
+
 
 {% block content %}
 <section class="search">
@@ -9,9 +13,9 @@
         
         <label for="gender">성별</label>
         <select name="gender" id="gender">
-            <option value="{% if request.args.get('gender', '') == '' %}selected{% endif %}"></option>
-            <option value="{% if request.args.get('gender', '') == '여성' %}selected{% endif %}">여성</option>
-            <option value="{% if request.args.get('gender', '') == '남성' %}selected{% endif %}">남성</option>
+            <option value="" {% if request.args.get('gender', '') == '' %}selected{% endif %}></option>
+            <option value="여성" {% if request.args.get('gender', '') == '여성' %}selected{% endif %}>여성</option>
+            <option value="남성" {% if request.args.get('gender', '') == '남성' %}selected{% endif %}>남성</option>
         </select>
 
         <label for="age">나이</label>
@@ -27,49 +31,10 @@
 </section>
 {% endif %}
 
-<section class="content">
-    <ul class="list_header">
-        <li>
-            <span>이름</span>
-            <span>성별</span>
-            <span>나이</span>
-            <span>생년월일</span>
-            <ul class="list_item">
-                {% for user in result %}
-                <a href="{{ url_for('user.user_detail', user_id=user['Id']) }}">
-                    <li>
-                        <span>{{ user['Name'] }}</span>
-                        <span>{{ user['Gender'] }}</span>
-                        <span>{{ user['Age'] }}</span>
-                        <span>{{ user['Birthdate'] }}</span>
-                    </li>
-                </a>
-                {% endfor %}
-            </ul>
-        </li>
-    </ul>
-</section>
+{% set headers = ["이름", "성별", "나이", "생년월일"] %}
+{{ render_list(headers, result, user_item) }}
 
-<section>
-    <ul class="pagination">
-        <li><a href="{{ url_for('user.get_user', page=1) }}"><i class="fa-solid fa-angles-left"></i></a></li>
-        {% if page > 1 %}
-        <li><a href="{{ url_for('user.get_user', page=page - 1) }}"><i class="fa-solid fa-angle-left"></i></a></li>
-        {% endif %}
-        {% set start_page = (page - 1) // 5 * 5 + 1 %}
-        {% set end_page = start_page + 4 %}
-        {% if end_page > total_pages %}
-            {% set end_page = total_pages %}
-        {% endif %}
+{% set params = {'name': request.args.get('name'), 'gender': request.args.get('gender'), 'age': request.args.get('age')} %}
+{{ render_pagination('user.get_user', page, total_pages, params) }}
 
-        {% for p in range(start_page, end_page + 1) %}
-        <li class="{% if p == page %}active{% endif %}"><a href="{{ url_for('user.get_user', page=p) }}">{{ p }}</a></li>
-        {% endfor %}
-        
-        {% if page < total_pages %}
-        <li><a href="{{ url_for('user.get_user', page=page+1) }}"><i class="fa-solid fa-angle-right"></i></a></li>
-        {% endif %}
-        <li><a href="{{ url_for('user.get_user', page=total_pages) }}"><i class="fa-solid fa-angles-right"></i></a></li>
-    </ul>
-</section>
 {% endblock %}

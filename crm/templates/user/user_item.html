@@ -1,0 +1,10 @@
+{% macro user_item(item) %}
+<a href="{{ url_for('user.user_detail', user_id=item['Id']) }}">
+    <li>
+        <span>{{ item['Name'] }}</span>
+        <span>{{ item['Gender'] }}</span>
+        <span>{{ item['Age'] }}</span>
+        <span>{{ item['Birthdate'] }}</span>
+    </li>
+</a>
+{% endmacro %}
