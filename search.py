@@ -21,7 +21,10 @@ def search():
     params = []
 
     if search_type == "user":
-        if name:
+        if name :
+            query += " AND name LIKE ?"
+            params.append('%' + name + '%')
+        if name and gender :
             query += " AND name LIKE ?"
             params.append('%' + name + '%')
         if gender:
@@ -34,4 +37,4 @@ def search():
 
     items, total_pages = paginate(query, params, page, per_page)
     
-    return render_template('user.html', items=items, page=page, per_page=per_page, total_pages=total_pages)
+    return render_template('user.html', items=items, page=page, per_page=per_page, total_pages=total_pages, name=name, gender=gender, age=age)

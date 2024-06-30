@@ -24,5 +24,7 @@ def order_detail(order_id):
     cur.execute("SELECT * FROM orders WHERE Id = ?", (order_id,))
     order = cur.fetchone()
     conn.close()
+    
+    orders = [dict(order)] if order else []
 
-    return render_template('order/order_detail.html', order=dict(order))
+    return render_template('order/order_detail.html', orders=orders)

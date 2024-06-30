@@ -47,5 +47,7 @@ def user_detail(user_id):
     cur.execute("SELECT * FROM users WHERE Id = ?", (user_id,))
     user = cur.fetchone()
     conn.close()
+    
+    users = [dict(user)] if user else []
 
-    return render_template('user/user_detail.html', user=dict(user))
+    return render_template('user/user_detail.html', users=users)
