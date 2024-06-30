@@ -1,0 +1,27 @@
+{% macro render_details(headers, items, key_map, back_url) %}
+<section>
+    <ul class="details">
+        <li class="header">
+            {% for header in headers %}
+            <span>{{ header }}</span>
+            {% endfor %}
+        </li>
+        {% for item in items %}
+        <li class="details-item">
+            {% for header in headers %}
+            <span>
+                {% if header == '주문아이디' %}
+                <a href="{{ url_for('order.order_detail', order_id=item[key_map[header]]) }}">{{ item[key_map[header]] }}</a>
+                {% elif header == '아이템아이디' %}
+                    <a href="{{ url_for('item.item_detail', item_id=item[key_map[header]]) }}">{{ item[key_map[header]] }}</a>
+                {% else %}
+                    {{ item[key_map[header]] }}
+                {% endif %}
+            </span>
+            {% endfor %}
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ back_url }}" class="back-link">돌아가기</a>
+</section>
+{% endmacro %}
