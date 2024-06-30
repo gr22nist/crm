@@ -1,42 +1,12 @@
 {% extends "base.html" %}
-{% block title %}ORDER PAGE{% endblock %}
+{% from "list.html" import render_list %}
+{% from "orderitem/orderitem_item.html" import orderitem_item %}
+{% from "paginate.html" import render_pagination %}
+{% block title %}ORDERITEM PAGE{% endblock %}
 
 {% block content %}
-<section class="content">
-    <ul class="list_header">
-        <li>
-            <span>아이디</span>
-            <span>주문 내역 아이디</span>
-            <span>아이템 아이디</span>
-            <ul class="list_item">
-                {% for orderitem in result %}
-                <li>
-                    <span>{{ orderitem['Id'] }}</span>
-                    <span>{{ order['Id'] }}</span>
-                    <span>{{ item['Id'] }} </span>
-                </li>
-                {% endfor %}
-            </ul>
-        </li>
-    </ul>
-</section>
-<section>
-    <ul class="pagination">
-        <li><a href="{{ url_for('order.get_order', page=1) }}"><i class="fa-solid fa-angles-left"></i></a></li>
-        <li><a href="{{ url_for('order.get_order', page=page - 1) }}"><i class="fa-solid fa-angle-left"></i></a></li>
+{% set headers = ["아이디", "주문 내역 아이디", "메뉴 아이디"] %}
+{{ render_list(headers, result, orderitem_item) }}
 
-        {% set start_page = (page - 1) // 5 * 5 + 1 %}
-        {% set end_page = start_page + 4 %}
-        {% if end_page > total_pages %}
-            {% set end_page = total_pages %}
-        {% endif %}
-
-        {% for p in range(start_page, end_page + 1) %}
-        <li class="{% if p == page %}active{% endif %}"><a href="{{ url_for('order.get_user', page=p) }}">{{ p }}</a></li>
-        {% endfor %}
-        
-        <li><a href="{{ url_for('order.get_order', page=page+1) }}"><i class="fa-solid fa-angle-right"></i></a></li>
-        <li><a href="{{ url_for('order.get_order', page=total_pages) }}"><i class="fa-solid fa-angles-right"></i></a></li>
-    </ul>
-</section>
+{{ render_pagination('orderitem.get_orderitem', page, total_pages) }}
 {% endblock %}

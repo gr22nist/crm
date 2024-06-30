@@ -1,50 +1,12 @@
 {% extends "base.html" %}
+{% from "list.html" import render_list %}
+{% from "order/order_item.html" import order_item %}
+{% from "paginate.html" import render_pagination %}
 {% block title %}ORDER PAGE{% endblock %}
 
 {% block content %}
-<section class="content">
-    <ul class="list_header">
-        <li>
-            <span>주문 아이디</span>
-            <span>주문 일자</span>
-            <span>상점명</span>
-            <span>주문자명</span>
-            <ul class="list_item">
-                {% for order in result %}
-                    <li>
-                        <a href="{{ url_for('order.order_detail', order_id=order['Id']) }}">
-                            <span>{{ order['Id'] }}</span>
-                        </a>
-                        <span>{{ order['OrderAt'] }}</span>
-                        <span>{{ order['StoreId'] }} </span>
-                        <span>{{ order['orderId'] }}</span>
-                    </li>
-                {% endfor %}
-            </ul>
-        </li>
-    </ul>
-</section>
-<section>
-    <ul class="pagination">
-        <li><a href="{{ url_for('order.get_order', page=1) }}"><i class="fa-solid fa-angles-left"></i></a></li>
-        {% if page > 1 %}
-        <li><a href="{{ url_for('order.get_order', page=page - 1) }}"><i class="fa-solid fa-angle-left"></i></a></li>
-        {% endif %}
-        {% set start_page = (page - 1) // 5 * 5 + 1 %}
-        {% set end_page = start_page + 4 %}
-        {% if end_page > total_pages %}
-            {% set end_page = total_pages %}
-        {% endif %}
+{% set headers = ["주문 아이디", "주문 일자", "지점명", "주문자명"] %}
+{{ render_list(headers, result, order_item) }}
 
-        {% for p in range(start_page, end_page + 1) %}
-        <li class="{% if p == page %}active{% endif %}"><a href="{{ url_for('order.get_order', page=p) }}">{{ p }}</a></li>
-        {% endfor %}
-        
-        {% if page < total_pages %}
-        <li><a href="{{ url_for('order.get_order', page=page+1) }}"><i class="fa-solid fa-angle-right"></i></a></li>
-        {% endif %}
-        <li><a href="{{ url_for('order.get_order', page=total_pages) }}"><i class="fa-solid fa-angles-right"></i></a></li>
-    </ul>
-</section>
-</section>
+{{ render_pagination('order.get_order', page, total_pages) }}
 {% endblock %}
