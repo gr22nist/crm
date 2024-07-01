@@ -5,7 +5,7 @@
 {% block title %}STORE PAGE{% endblock %}
 
 {% block content %}
-{% set headers = ["종류", "상품명", "단가"] %}
+{% set headers = ["상품명", "종류", "단가"] %}
 {{ render_list(headers, result, item_item) }}
 
 {{ render_pagination('item.get_item', page, total_pages) }}

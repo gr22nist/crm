@@ -10,18 +10,20 @@
     <form action="{{ url_for('user.get_user') }}" method="GET">
         <label for="name">이름</label>
         <input type="text" name="name" id="name" value="{{ request.args.get('name', '') }}">
-        
+        <span class="gap">|</span>
         <label for="gender">성별</label>
         <select name="gender" id="gender">
             <option value="" {% if request.args.get('gender', '') == '' %}selected{% endif %}></option>
             <option value="여성" {% if request.args.get('gender', '') == '여성' %}selected{% endif %}>여성</option>
             <option value="남성" {% if request.args.get('gender', '') == '남성' %}selected{% endif %}>남성</option>
         </select>
-
+        <span class="gap">|</span>
         <label for="age">나이</label>
         <input type="number" name="age" id="age" value="{{ request.args.get('age', '') }}">
         
-        <button type="submit">검색</button>
+        <button type="submit">
+            <i class="fas fa-search icon"></i>
+        </button>
     </form>
 </section>
 

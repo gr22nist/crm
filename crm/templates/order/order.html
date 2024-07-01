@@ -5,7 +5,7 @@
 {% block title %}ORDER PAGE{% endblock %}
 
 {% block content %}
-{% set headers = ["주문 아이디", "주문 일자", "지점명", "주문자명"] %}
+{% set headers = ["주문 아이디", "주문 일자", "매장 아이디", "주문자 아이디"] %}
 {{ render_list(headers, result, order_item) }}
 
 {{ render_pagination('order.get_order', page, total_pages) }}

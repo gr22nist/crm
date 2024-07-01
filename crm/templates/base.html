@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../static/img/favi.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../static/css/common.css">
+    <link rel="stylesheet" href="../static/css/layout.css">
     <title>CRM</title>
     
     <link rel="stylesheet" href="{{ url_for('static', filename='/css/common.css' ) }}">
@@ -12,6 +15,9 @@
 <body>
     <nav class="top_nav">
         <ul class="nav_wrap">
+            <li>
+                <a href="/"><img src="../static/img/logo.svg"></a>
+            </li>
             <li><a href="{{ url_for('user.get_user') }}">사용자</a></li>
             <li><a href="{{ url_for('order.get_order') }}">주문 내역</a></li>
             <li><a href="{{ url_for('orderitem.get_orderitem') }}">주문 메뉴 내역</a></li>
@@ -19,6 +25,10 @@
             <li><a href="{{ url_for('store.get_store') }}">스토어</a></li>
         </ul>
     </nav>
-    {% block content %}
-    {% endblock %}
+    <main class="container">
+        <div>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
 </html>

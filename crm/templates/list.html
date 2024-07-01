@@ -2,9 +2,11 @@
 <section class="content">
     <ul class="list_header">
         <li>
-            {% for header in headers %}
-            <span>{{ header }}</span>
-            {% endfor %}
+            <div class="header_wrap">
+                {% for header in headers %}
+                <span>{{ header }}</span>
+                {% endfor %}
+            </div>
             <ul class="list_item">
                 {% for item in items %}
                 {{ item_template(item) }}

@@ -1,9 +1,11 @@
 {% macro store_item(item) %}
-<a href="{{ url_for('store.store_detail', store_id=item['Id']) }}">
-    <li>
-        <span>{{ item['Name'] }}</span>
-        <span>{{ item['Type'] }}</span>
-        <span>{{ item['Address'] }}</span>
+    <li class="data_list">
+        <a href="{{ url_for('store.store_detail', store_id=item['Id']) }}">
+            <div class="date_cell">
+                <span>{{ item['Name'] }}</span>
+                <span>{{ item['Type'] }}</span>
+                <span>{{ item['Address'] }}</span>
+            </div>
+        </a>
     </li>
-</a>
 {% endmacro %}

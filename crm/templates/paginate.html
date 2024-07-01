@@ -1,8 +1,11 @@
 {% macro render_pagination(endpoint, page, total_pages, params={}) %}
-<section>
-    <ul class="pagination">
-        <li><a href="{{ url_for(endpoint, page=1, **params) }}"><i class="fa-solid fa-angles-left"></i></a></li>
+<section class="page_wrap">
+    <ul class="paginate">
+        {% if page == 1 %}
+        <li><i class="fa-solid fa-angles-left disabled"></i></li>
+        {% endif %}
         {% if page > 1 %}
+        <li><a href="{{ url_for(endpoint, page=1, **params) }}"><i class="fa-solid fa-angles-left"></i></a></li>
         <li><a href="{{ url_for(endpoint, page=page - 1, **params) }}"><i class="fa-solid fa-angle-left"></i></a></li>
         {% endif %}
         {% set start_page = (page - 1) // 5 * 5 + 1 %}
@@ -17,8 +20,11 @@
         
         {% if page < total_pages %}
         <li><a href="{{ url_for(endpoint, page=page + 1, **params) }}"><i class="fa-solid fa-angle-right"></i></a></li>
-        {% endif %}
         <li><a href="{{ url_for(endpoint, page=total_pages, **params) }}"><i class="fa-solid fa-angles-right"></i></a></li>
+        {% endif %}
+        {% if page == total_pages %}
+        <li><i class="fa-solid fa-angles-right disabled"></i></li>
+        {% endif %}
     </ul>
 </section>
 {% endmacro %}
