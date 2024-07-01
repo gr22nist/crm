@@ -11,7 +11,7 @@ def get_user():
     age = request.args.get("age")
 
     page = request.args.get('page', 1, type=int)
-    per_page = request.args.get('per_page', default=20, type=int)
+    per_page = request.args.get('per_page', default=15, type=int)
     
     base_query = "SELECT * FROM users WHERE 1=1"
     params = []

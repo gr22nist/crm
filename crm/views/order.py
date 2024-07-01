@@ -7,7 +7,7 @@ bp = Blueprint('order', __name__, url_prefix='/orders')
 @bp.route('/')
 def get_order():
     page = request.args.get('page', 1, type=int)
-    per_page = request.args.get('per_page', default=20, type=int)
+    per_page = request.args.get('per_page', default=15, type=int)
     
     base_query = "SELECT * FROM orders WHERE 1=1"
     params = []

@@ -7,7 +7,7 @@ bp = Blueprint('item', __name__, url_prefix='/items')
 @bp.route('/')
 def get_item():
     page = request.args.get('page', 1, type=int)
-    per_page = request.args.get('per_page', default=20, type=int)
+    per_page = request.args.get('per_page', default=15, type=int)
     query = """
         SELECT * from items
     """
