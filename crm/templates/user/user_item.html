@@ -10,3 +10,14 @@
     </a>
 </li>
 {% endmacro %}
+
+{% macro user_order_item(order) %}
+<li class="order_list_item">
+    <div class="order_details">
+        <span class="badge">Order ID: {{ order.order_id }}</span>
+        <span>Order Date: {{ order.order_date }}</span>
+        <span>Store Name: {{ order.store_name }}</span>
+        <span>Item Name: {{ order.item_name }}</span>
+    </div>
+</li>
+{% endmacro %}
