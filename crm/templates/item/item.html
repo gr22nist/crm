@@ -6,6 +6,7 @@
 {% block title %}STORE PAGE{% endblock %}
 
 {% block content %}
+<h2>메뉴</h2>
 <section class="search">
     {{ search_form(action=url_for('item.get_item'), fields=fields) }}
 </section>

@@ -3,14 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../static/img/favi.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../static/css/common.css">
-    <link rel="stylesheet" href="../static/css/layout.css">
-    <title>CRM</title>
-    
+    <link rel="icon" href="{{ url_for('static', filename='/img/favi.ico' ) }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='/css/common.css' ) }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='/css/layout.css' ) }}">
     <script src="https://kit.fontawesome.com/196821e7aa.js" crossorigin="anonymous"></script>
+    <title>CRM</title>
 </head>
 <body>
     <nav class="top_nav">

@@ -3,11 +3,11 @@
 {% block title %}USER DETAIL{% endblock %}
 
 {% block content %}
-<section class="user_detail">
+<section class="detail_wrap">
     <h1>사용자 정보</h1>
     {% set headers = ["아이디", "이름", "성별", "나이", "생년월일", "주소"] %}
     {% set key_map = {"아이디": "Id", "이름": "Name", "성별": "Gender", "나이": "Age", "생년월일": "Birthdate", "주소": "Address"} %}
-    {% set items = users %}
+    {% set items = [user] %}
     {{ render_details(headers, items, key_map, url_for('user.get_user')) }}
 </section>
 {% endblock %}

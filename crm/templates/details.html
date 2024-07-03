@@ -7,7 +7,7 @@
             {% endfor %}
         </li>
         {% for item in items %}
-        <li class="details-item">
+        <li class="item">
             {% for header in headers %}
             <span>
                 {% if header == '주문아이디' %}
@@ -22,6 +22,8 @@
         </li>
         {% endfor %}
     </ul>
-    <a href="{{ back_url }}" class="back-link">돌아가기</a>
+    <span class="back-link">
+        <a href="javascript:history.back()"><i class="fa-solid fa-rotate-left"></i>돌아가기</a>
+    </span>
 </section>
 {% endmacro %}

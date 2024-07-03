@@ -5,6 +5,7 @@
 {% block title %}ORDER PAGE{% endblock %}
 
 {% block content %}
+<h2>주문 내역</h2>
 {% set headers = ["주문아이디", "주문시간", "매장명", "주문자명"] %}
 {{ render_list(headers, result, order_item) }}
 

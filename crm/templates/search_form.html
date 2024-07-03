@@ -11,7 +11,7 @@
                 {% endfor %}
             </select>
         {% elif field.type == 'number' %}
-            <input type="number" name="{{ field.name }}" id="{{ field.id }}" value="{{ field.value }}">
+            <input type="number" name="{{ field.name }}" id="{{ field.id }}" value="{{ field.value }}" min="1">
         {% endif %}
         <span class="gap">|</span>
     {% endfor %}
