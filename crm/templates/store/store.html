@@ -12,6 +12,6 @@
 {% set headers = ["매장명", "프랜차이즈명", "주소"] %}
 {{ render_list(headers, result, store_item) }}
 
-{{ render_pagination('store.get_store', page, total_pages) }}
+{{ render_pagination('store.get_store', page, total_pages, params=filters) }}
 
 {% endblock %}
