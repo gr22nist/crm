@@ -33,14 +33,14 @@ def user_order_info(user_id):
 def store_revenue_info(store_id):
     query = """
         SELECT s.name AS "매장명", strftime('%Y', o.orderat) AS "년", strftime('%m', o.orderat) AS "월",
-        COUNT (*) * (i.unitprice) AS "총매출액"
+        SUM(i.unitprice) AS "총매출액"
         FROM stores s
         JOIN orders o ON s.id = o.storeid
         JOIN orderitems oi ON o.id = oi.orderid
         JOIN items i ON oi.itemid = i.id
         WHERE s.id = ?
-        GROUP BY s.id, s.name strftime('%Y', o.orderat), strftime('%m', o.orderat)
-        ORDER BY s.id, s.name strftime('%Y', o.orderat), strftime('%m', o.orderat);
+        GROUP BY s.id, s.name, strftime('%Y', o.orderat), strftime('%m', o.orderat)
+        ORDER BY s.name, strftime('%Y', o.orderat), strftime('%m', o.orderat);
     """
     return fetch_all(query, (store_id,))
 

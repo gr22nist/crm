@@ -6,8 +6,12 @@ def build_query(base_query, filters):
     
     for key, value in filters.items():
         if value:
-            query += f" AND {key} LIKE ?"
-            params.append(f'%{value}%')
+            if key == 'age':
+                query += f" AND {key} = ?"
+                params.append(value)
+            else:
+                query += f" AND {key} LIKE ?"
+                params.append(f'%{value}%')
     
     return query, params
 

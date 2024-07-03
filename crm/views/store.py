@@ -21,7 +21,7 @@ def get_store():
     result, total_pages, no_results = execute_query(query, params, page, per_page)
     fields = get_store_search_fields(request.args)
     
-    return render_template('store/store.html', result=result, page=page, per_page=per_page, total_pages=total_pages, no_results=no_results, fields=fields)
+    return render_template('store/store.html', result=result, page=page, per_page=per_page, total_pages=total_pages, no_results=no_results, fields=fields, filters=filters)
 
 @bp.route('/<store_id>')
 def store_detail(store_id):
