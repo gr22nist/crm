@@ -1,40 +1,75 @@
-from flask import Blueprint, render_template, request, flash
-from paginate import paginate
+def get_user_search_fields(request_args):
+    return [
+        {
+            'type': 'text',
+            'name': 'name',
+            'id': 'name',
+            'label': '이름',
+            'value': request_args.get('name', '')
+        },
+        {
+            'type': 'select',
+            'name': 'gender',
+            'id': 'gender',
+            'label': '성별',
+            'options': [
+                {'value': '', 'label': '', 'selected': request_args.get('gender', '') == ''},
+                {'value': '여성', 'label': '여성', 'selected': request_args.get('gender', '') == '여성'},
+                {'value': '남성', 'label': '남성', 'selected': request_args.get('gender', '') == '남성'}
+            ]
+        },
+        {
+            'type': 'number',
+            'name': 'age',
+            'id': 'age',
+            'label': '나이',
+            'value': request_args.get('age', '')
+        }
+    ]
 
-search_bp = Blueprint('search', __name__)
+def get_item_search_fields(request_args):
+    return [
+        {
+            'type': 'text',
+            'name': 'name',
+            'id': 'name',
+            'label': '상품명',
+            'value': request_args.get('name', '')
+        },
+        {
+            'type': 'select',
+            'name': 'type',
+            'id': 'type',
+            'label': '종류',
+            'options': [
+                {'value': '', 'label': '', 'selected': request_args.get('gender', '') == ''},
+                {'value': '커피', 'label': '커피', 'selected': request_args.get('gender', '') == '커피'},
+                {'value': '주스', 'label': '주스', 'selected': request_args.get('gender', '') == '주스'},
+                {'value': '케이크', 'label': '케이크', 'selected': request_args.get('gender', '') == '케이크'}
+            ]
+        }
+    ]
 
-@search_bp.route('/search', methods=['GET'])
-def search():
-    search_type = request.args.get("type")
-    name = request.args.get("name")
-    gender = request.args.get("gender")
-    age = request.args.get("age")
-    
-    page = request.args.get('page', 1, type=int)
-    per_page = request.args.get('per_page', default=10, type=int)
-    
-    if search_type == "user":
-        query = "SELECT name, gender, age, birthdate FROM users WHERE 1=1"
-    else:
-        return "Invalid search type", 400
-
-    params = []
-
-    if search_type == "user":
-        if name :
-            query += " AND name LIKE ?"
-            params.append('%' + name + '%')
-        if name and gender :
-            query += " AND name LIKE ?"
-            params.append('%' + name + '%')
-        if gender:
-            query += " AND gender = ?"
-            params.append(gender)
-        if age:
-            query += " AND age = ?"
-            params.append(age)
-    # 다른 검색 타입에 대한 조건을 추가할 수 있음
-
-    items, total_pages = paginate(query, params, page, per_page)
-    
-    return render_template('user.html', items=items, page=page, per_page=per_page, total_pages=total_pages, name=name, gender=gender, age=age)
+def get_store_search_fields(request_args):
+    return [
+        {
+            'type': 'text',
+            'name': 'name',
+            'id': 'name',
+            'label': '매장명',
+            'value': request_args.get('name', '')
+        },
+                {
+            'type': 'select',
+            'name': 'type',
+            'id': 'type',
+            'label': '브랜드 타입',
+            'options': [
+                {'value': '', 'label': '', 'selected': request_args.get('gender', '') == ''},
+                {'value': '스타벅스', 'label': '스타벅스', 'selected': request_args.get('gender', '') == '스타벅스'},
+                {'value': '투썸', 'label': '투썸', 'selected': request_args.get('gender', '') == '투썸'},
+                {'value': '이디야', 'label': '이디야', 'selected': request_args.get('gender', '') == '이디야'},
+                {'value': '커피빈', 'label': '커피빈', 'selected': request_args.get('gender', '') == '커피빈'}
+            ]
+        }
+    ]

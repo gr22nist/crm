@@ -1,10 +1,23 @@
 {% macro user_item(item) %}
-<a href="{{ url_for('user.user_detail', user_id=item['Id']) }}">
-    <li>
-        <span>{{ item['Name'] }}</span>
-        <span>{{ item['Gender'] }}</span>
-        <span>{{ item['Age'] }}</span>
-        <span>{{ item['Birthdate'] }}</span>
-    </li>
-</a>
+<li class="data_list">
+    <a href="{{ url_for('user.user_detail', user_id=item['Id']) }}">
+        <div class="date_cell">
+            <span>{{ item['Name'] }}</span>
+            <span>{{ item['Gender'] }}</span>
+            <span>{{ item['Age'] }}</span>
+            <span>{{ item['Birthdate'] }}</span>
+        </div>
+    </a>
+</li>
+{% endmacro %}
+
+{% macro user_order_item(order) %}
+<li class="order_list_item">
+    <div class="order_details">
+        <span class="badge">Order ID: {{ order.order_id }}</span>
+        <span>Order Date: {{ order.order_date }}</span>
+        <span>Store Name: {{ order.store_name }}</span>
+        <span>Item Name: {{ order.item_name }}</span>
+    </div>
+</li>
 {% endmacro %}

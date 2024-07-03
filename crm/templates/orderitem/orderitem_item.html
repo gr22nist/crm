@@ -1,11 +1,9 @@
 {% macro orderitem_item(item) %}
-<li>
-    <span>{{ item['Id'] }}</span>
-    <a href="{{ url_for('order.order_detail', order_id=item['Id']) }}">
-        <span>{{ item['OrderId'] }}</span>
-    </a>
-    <a href="{{ url_for('item.item_detail', item_id=item['Id']) }}">
-        <span>{{ item['ItemId'] }}</span>
-    </a>
+<li class="data_list">
+    <div class="date_cell">
+        <span class="badge">{{ item['Id'] }}</span>
+        <span class="badge"><a href="{{ url_for('order.order_detail', order_id=item['OrderId']) }}">{{ item['OrderId'] }}</a></span>
+        <span class="badge"><a href="{{ url_for('item.item_detail', item_id=item['ItemId']) }}">{{ item['ItemId'] }}</a></span>
+    </div>
 </li>
 {% endmacro %}

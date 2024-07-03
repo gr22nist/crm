@@ -1,10 +1,14 @@
 {% extends "base.html" %}
+{% from 'search_form.html' import search_form %}
 {% from "list.html" import render_list %}
 {% from "store/store_item.html" import store_item %}
 {% from "paginate.html" import render_pagination %}
 {% block title %}STORE PAGE{% endblock %}
 
 {% block content %}
+<section class="search">
+    {{ search_form(action=url_for('store.get_store'), fields=fields) }}
+</section>
 {% set headers = ["매장명", "프랜차이즈명", "주소"] %}
 {{ render_list(headers, result, store_item) }}
 
