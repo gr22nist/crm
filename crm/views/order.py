@@ -20,7 +20,10 @@ def get_order():
     
     result, total_pages, no_results = execute_query(query, params, page, per_page)
     
+
+    
     return render_template('order/order.html', result=result, page=page, per_page=per_page, total_pages=total_pages, no_results=no_results)
+
 
 @bp.route('/<order_id>')
 def order_detail(order_id):
@@ -34,5 +37,7 @@ def order_detail(order_id):
     order = fetch_one(query, (order_id,))
     
     orders = [dict(order)] if order else []
+    
+    print(F"결과: {orders}")
 
     return render_template('order/order_detail.html', orders=orders)

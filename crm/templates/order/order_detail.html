@@ -5,8 +5,8 @@
 {% block content %}
 <section class="detail_wrap">
     <h1>주문 상세 내역</h1>
-    {% set headers = ["아이디", "주문시간", "매장 아이디", "주문자 아이디"] %}
-    {% set key_map = {"아이디": "Id", "주문시간": "OrderAt", "매장 아이디": "StoreId", "주문자 아이디": "UserId"} %}
+    {% set headers = ["아이디", "주문시간", "매장명", "주문자명"] %}
+    {% set key_map = {"아이디": "Id", "주문시간": "OrderAt", "매장명": "storename", "주문자명": "username"} %}
     {% set items = orders %}
     {{ render_details(headers, items, key_map, url_for('order.get_order')) }}
 </section>
