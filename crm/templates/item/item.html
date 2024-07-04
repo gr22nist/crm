@@ -13,5 +13,5 @@
 {% set headers = ["상품명", "종류", "단가"] %}
 {{ render_list(headers, result, item_item) }}
 
-{{ render_pagination('item.get_item', page, total_pages) }}
+{{ render_pagination('item.get_item', page, total_pages, params=filters) }}
 {% endblock %}

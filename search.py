@@ -42,10 +42,10 @@ def get_item_search_fields(request_args):
             'id': 'type',
             'label': '종류',
             'options': [
-                {'value': '', 'label': '', 'selected': request_args.get('gender', '') == ''},
-                {'value': '커피', 'label': '커피', 'selected': request_args.get('gender', '') == '커피'},
-                {'value': '주스', 'label': '주스', 'selected': request_args.get('gender', '') == '주스'},
-                {'value': '케이크', 'label': '케이크', 'selected': request_args.get('gender', '') == '케이크'}
+                {'value': '', 'label': '', 'selected': request_args.get('type', '') == ''},
+                {'value': '커피', 'label': '커피', 'selected': request_args.get('type', '') == '커피'},
+                {'value': '주스', 'label': '주스', 'selected': request_args.get('type', '') == '주스'},
+                {'value': '케이크', 'label': '케이크', 'selected': request_args.get('type', '') == '케이크'}
             ]
         }
     ]
@@ -65,11 +65,11 @@ def get_store_search_fields(request_args):
             'id': 'type',
             'label': '브랜드 타입',
             'options': [
-                {'value': '', 'label': '', 'selected': request_args.get('gender', '') == ''},
-                {'value': '스타벅스', 'label': '스타벅스', 'selected': request_args.get('gender', '') == '스타벅스'},
-                {'value': '투썸', 'label': '투썸', 'selected': request_args.get('gender', '') == '투썸'},
-                {'value': '이디야', 'label': '이디야', 'selected': request_args.get('gender', '') == '이디야'},
-                {'value': '커피빈', 'label': '커피빈', 'selected': request_args.get('gender', '') == '커피빈'}
+                {'value': '', 'label': '', 'selected': request_args.get('type', '') == ''},
+                {'value': '스타벅스', 'label': '스타벅스', 'selected': request_args.get('type', '') == '스타벅스'},
+                {'value': '투썸', 'label': '투썸', 'selected': request_args.get('type', '') == '투썸'},
+                {'value': '이디야', 'label': '이디야', 'selected': request_args.get('type', '') == '이디야'},
+                {'value': '커피빈', 'label': '커피빈', 'selected': request_args.get('type', '') == '커피빈'}
             ]
         }
     ]

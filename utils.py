@@ -19,7 +19,6 @@ def execute_query(query, params, page, per_page):
     try:
         result, total_pages = paginate(query, params, page, per_page)
         no_results = not result
-        print(f"Query executed successfully: {result}")
     except Exception as e:
         print(f"Error executing query: {e}")
         no_results = True
@@ -38,11 +37,9 @@ def paginate(query, params, page, per_page=15):
     
     try:
         # 페이지네이션 적용된 쿼리 실행
-        print(f"Executing query: {query_with_pagination} with params: {paginated_params}")
         cur.execute(query_with_pagination, paginated_params)
         items = cur.fetchall()
         items_dict = [dict(row) for row in items]
-        print(f"Fetched items: {items_dict}")
 
         # where절 추출
         where_start = query.upper().find("WHERE")
@@ -54,15 +51,12 @@ def paginate(query, params, page, per_page=15):
 
         # 총 항목 수 계산
         count_query = "SELECT COUNT(*) FROM " + query[query.upper().find("FROM ") + 5:where_start] + " " + conditions
-        print(f"Count query: {count_query} with params: {params}")
         cur.execute(count_query, params)
         total_count = cur.fetchone()[0]
-        print(f"Total count: {total_count}")
-
         total_pages = (total_count // per_page) + (1 if total_count % per_page > 0 else 0)
         
     except Exception as e:
-        print(f"Error in paginate function: {e}")
+        print(f"페이징 오류: {e}")
         items_dict = []
         total_pages = 1
 

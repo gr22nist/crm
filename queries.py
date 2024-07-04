@@ -40,7 +40,7 @@ def store_revenue_info(store_id):
         JOIN items i ON oi.itemid = i.id
         WHERE s.id = ?
         GROUP BY s.id, s.name, strftime('%Y', o.orderat), strftime('%m', o.orderat)
-        ORDER BY s.name, strftime('%Y', o.orderat), strftime('%m', o.orderat);
+        ORDER BY s.id, s.name, strftime('%Y', o.orderat), strftime('%m', o.orderat);
     """
     return fetch_all(query, (store_id,))
 

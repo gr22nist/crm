@@ -12,6 +12,8 @@ def get_item():
         'name': request.args.get("name"),
         'type': request.args.get("type")
     }
+    types = filters['type']
+    
     page = request.args.get('page', 1, type=int)
     per_page = request.args.get('per_page', default=15, type=int)
     
@@ -21,7 +23,7 @@ def get_item():
     result, total_pages, no_results = execute_query(query, params, page, per_page)
     fields = get_item_search_fields(request.args)
     
-    return render_template('item/item.html', result=result, page=page, per_page=per_page, total_pages=total_pages, no_results=no_results, fields=fields)
+    return render_template('item/item.html', result=result, page=page, per_page=per_page, total_pages=total_pages, no_results=no_results, fields=fields, filters=filters, types=types)
 
 @bp.route('/<item_id>')
 def item_detail(item_id):
