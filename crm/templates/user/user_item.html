@@ -11,7 +11,7 @@
 </li>
 {% endmacro %}
 
-{% macro user_order_item(order) %}
+{% macro user_order_item(item) %}
 <li class="order_list_item">
     <div class="order_details">
         <span class="badge">Order ID: {{ order.order_id }}</span>
@@ -20,4 +20,14 @@
         <span>Item Name: {{ order.item_name }}</span>
     </div>
 </li>
+{% macro order_item_template(item) %}
+    <li>
+        <span>{{ item[0] }}</span>
+        <span>{{ item[1] }}</span>
+        <span>{{ item[2] }}</span>
+        <span>{{ item[3] }}</span>
+    </li>
+    {% endmacro %}
+    {{ list.render_list(["Order ID", "Order Date", "Store ID", "User ID"], orders, order_item_template) }}
+
 {% endmacro %}
