@@ -3,6 +3,7 @@ from database import get_db_connection
 from utils import build_query, execute_query
 from search import get_user_search_fields
 from queries import user_order_info
+from queries import fetch_one
 
 bp = Blueprint('user', __name__, url_prefix='/users')
 
@@ -42,13 +43,11 @@ def get_user():
 
 @bp.route('/<user_id>')
 def user_detail(user_id):
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM users WHERE id = ?", (user_id,))
-    user = cur.fetchone()
-    conn.close()
+    query = "SELECT * FROM users WHERE id = ?"
+    user = fetch_one(query, (user_id,))
 
-    user_info = dict(user) if user else []
-    user_orders = user_order_info(user_id)
-
-    return render_template('user/user_detail.html', user=user_info, user_orders=user_orders)
+    users = dict(user) if user else []
+    
+    user_order_data = user_order_info(user_id)
+    
+    return render_template('user/user_detail.html', user=users, user_order_data=user_order_data)
