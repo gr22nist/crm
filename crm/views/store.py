@@ -34,8 +34,8 @@ def store_detail(store_id):
     store = cur.fetchone()
     conn.close()
     
-    item_sales_data = store_revenue_info(store_id)
+    store_sales_data = store_revenue_info(store_id)
     
     stores = [dict(store)] if store else []
 
-    return render_template('store/store_detail.html', stores=stores, item_sales_data=item_sales_data)
+    return render_template('store/store_detail.html', stores=stores, store_sales_data= store_sales_data)

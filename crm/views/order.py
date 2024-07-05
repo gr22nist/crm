@@ -38,6 +38,4 @@ def order_detail(order_id):
     
     orders = [dict(order)] if order else []
     
-    print(F"결과: {orders}")
-
     return render_template('order/order_detail.html', orders=orders)
