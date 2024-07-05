@@ -28,7 +28,7 @@ def user_order_info(user_id):
         JOIN items i ON oi.itemid = i.id
         WHERE u.id = ?
     """
-    return fetch_one(query, (user_id,))
+    return fetch_all(query, (user_id,))
 
 def store_revenue_info(store_id):
     query = """
