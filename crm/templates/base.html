@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{ url_for('static', filename='/img/favi.ico' ) }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='/css/common.css' ) }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='/css/layout.css' ) }}">
-    <script src="https://kit.fontawesome.com/196821e7aa.js" crossorigin="anonymous"></script>
-    <title>CRM</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="{{ url_for('static', filename='/img/favi.ico' ) }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='/css/common.css' ) }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='/css/layout.css' ) }}">
+	<script src="https://kit.fontawesome.com/196821e7aa.js" crossorigin="anonymous"></script>
+	<title>CRM</title>
 </head>
 <body>
-    <nav class="top_nav">
-        <ul class="nav_wrap">
-            <li>
-                <a href="/"><img src="../static/img/logo.svg"></a>
-            </li>
-            <li><a href="{{ url_for('user.get_user') }}">사용자</a></li>
-            <li><a href="{{ url_for('order.get_order') }}">주문 내역</a></li>
-            <li><a href="{{ url_for('orderitem.get_orderitem') }}">주문 메뉴 내역</a></li>
-            <li><a href="{{ url_for('item.get_item') }}">메뉴</a></li>
-            <li><a href="{{ url_for('store.get_store') }}">스토어</a></li>
-        </ul>
-    </nav>
-    <main class="container">
-        <div>
-            {% block content %}
-            {% endblock %}
-        </div>
-    </main>
+	<nav class="top_nav">
+		<ul class="nav_wrap">
+				<li>
+						<a href="/"><img src="../static/img/logo.svg"></a>
+				</li>
+				<li><a href="{{ url_for('user.get_user') }}">사용자</a></li>
+				<li><a href="{{ url_for('order.get_order') }}">주문 내역</a></li>
+				<li><a href="{{ url_for('orderitem.get_orderitem') }}">주문 메뉴 내역</a></li>
+				<li><a href="{{ url_for('item.get_item') }}">메뉴</a></li>
+				<li><a href="{{ url_for('store.get_store') }}">스토어</a></li>
+		</ul>
+	</nav>
+	<main class="container">
+		<div>
+			{% block content %}
+			{% endblock %}
+		</div>
+	</main>
 </html>

@@ -1,29 +1,35 @@
 {% macro render_details(headers, items, key_map, back_url) %}
 <section>
-    <ul class="details">
-        <li class="header">
-            {% for header in headers %}
-            <span>{{ header }}</span>
-            {% endfor %}
-        </li>
-        {% for item in items %}
-        <li class="item">
-            {% for header in headers %}
-            <span>
-                {% if header == '주문아이디' %}
-                <a href="{{ url_for('order.order_detail', order_id=item[key_map[header]]) }}">{{ item[key_map[header]] }}</a>
-                {% elif header == '아이템아이디' %}
-                    <a href="{{ url_for('item.item_detail', item_id=item[key_map[header]]) }}">{{ item[key_map[header]] }}</a>
-                {% else %}
-                    {{ item[key_map[header]] }}
-                {% endif %}
-            </span>
-            {% endfor %}
-        </li>
-        {% endfor %}
-    </ul>
-    <span class="back-link">
-        <a href="javascript:history.back()"><i class="fa-solid fa-rotate-left"></i>돌아가기</a>
-    </span>
+  <ul class="details">
+    <li class="header">
+      {% for header in headers %}
+      <span>{{ header }}</span>
+      {% endfor %}
+    </li>
+    {% for item in items %}
+    <li class="item">
+      {% for header in headers %}
+      <span>
+        {% if header == '주문아이디' %}
+        <a
+          href="{{ url_for('order.order_detail', order_id=item[key_map[header]]) }}"
+          >{{ item[key_map[header]] }}</a
+        >
+        {% elif header == '아이템아이디' %}
+        <a
+          href="{{ url_for('item.item_detail', item_id=item[key_map[header]]) }}"
+          >{{ item[key_map[header]] }}</a
+        >
+        {% else %} {{ item[key_map[header]] }} {% endif %}
+      </span>
+      {% endfor %}
+    </li>
+    {% endfor %}
+  </ul>
+  <span class="back-link">
+    <a href="javascript:history.back()"
+      ><i class="fa-solid fa-rotate-left"></i>돌아가기</a
+    >
+  </span>
 </section>
 {% endmacro %}

@@ -1,22 +1,43 @@
 {% macro search_form(action, fields) %}
 <form action="{{ action }}" method="GET">
-    {% for field in fields %}
-        <label for="{{ field.id }}">{{ field.label }}</label>
-        {% if field.type == 'text' %}
-            <input type="text" name="{{ field.name }}" id="{{ field.id }}" value="{{ field.value }}">
-        {% elif field.type == 'select' %}
-            <select name="{{ field.name }}" id="{{ field.id }}">
-                {% for option in field.options %}
-                    <option value="{{ option.value }}" {% if option.selected %}selected{% endif %}>{{ option.label }}</option>
-                {% endfor %}
-            </select>
-        {% elif field.type == 'number' %}
-            <input type="number" name="{{ field.name }}" id="{{ field.id }}" value="{{ field.value }}" min="1">
-        {% endif %}
-        <span class="gap">|</span>
+  {% for field in fields %}
+  <label for="{{ field.id }}">{{ field.label }}</label>
+  {% if field.type == 'text' %}
+  <input
+    type="text"
+    name="{{ field.name }}"
+    id="{{ field.id }}"
+    value="{{ field.value }}"
+  />
+  {% elif field.type == 'select' %}
+  <select name="{{ field.name }}" id="{{ field.id }}">
+    {% for option in field.options %}
+    <option
+      value="{{ option.value }}"
+      {%
+      if
+      option.selected
+      %}selected{%
+      endif
+      %}
+    >
+      {{ option.label }}
+    </option>
     {% endfor %}
-    <button type="submit">
-        <i class="fas fa-search icon"></i>
-    </button>
+  </select>
+  {% elif field.type == 'number' %}
+  <input
+    type="number"
+    name="{{ field.name }}"
+    id="{{ field.id }}"
+    value="{{ field.value }}"
+    min="1"
+  />
+  {% endif %}
+  <span class="gap">|</span>
+  {% endfor %}
+  <button type="submit">
+    <i class="fas fa-search icon"></i>
+  </button>
 </form>
 {% endmacro %}
